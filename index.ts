@@ -7,9 +7,9 @@ import * as fs from "fs";
 (async () => {
   const xml = await getXml();
   {
-    const xml2jsParser = new xml2js.Parser();
+    const xml2jsParser = new xml2js.Parser({ attrkey: "attr", explicitArray: false });
     const json = await xml2jsParser.parseStringPromise(xml);
-    // console.log(JSON.stringify(json, null, "  "))
+    console.log(JSON.stringify(json, null, "  "))
   }
   {
     const json = xml2json.toJson(xml);
@@ -17,7 +17,7 @@ import * as fs from "fs";
   }
   {
     const json = fastXmlParser.parse(xml, { ignoreAttributes: false, attributeNamePrefix: "" });
-    console.log(JSON.stringify(json, null, "  "));
+    // console.log(JSON.stringify(json, null, "  "));
   }
 })();
 
